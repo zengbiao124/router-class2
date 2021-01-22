@@ -1,30 +1,29 @@
-import RouterDemo from "./components/RouterDemo";
-import RouterChildrenDemo from "./components/RouterChildrenDemo";
-
 const routes = [
-  { path: "/", component: RouterDemo, name: "0" },
-  { path: "/foo", component: RouterDemo, name: "1" },
-  { path: "/bar", component: RouterDemo, name: "2" },
+  { path: "/", redirect: "/home" },
   {
-    path: "/user/:id",
-    component: RouterDemo,
-    name: "3",
-    props: true,
+    path: "/home",
+    name: "home",
+    component: () => import("./view/home/index")
+  },
+  {
+    path: "/blog",
+    name: "blog",
+    redirect: { name: "blogList" },
+    component: () => import("./view/blog/index"),
     children: [
       {
-        path: "profile",
-        component: RouterChildrenDemo,
-        name: "3-1"
+        path: "list",
+        name: "blogList",
+        component: () => import("./view/blog/BlogList.vue"),
       },
       {
-        path: "posts",
-        component: RouterChildrenDemo,
-        name: "3-2"
+        path: "view/:id",
+        name: "blogView",
+        props:true,
+        component: () => import("./view/blog/BlogDetail.vue"),
       }
     ]
-  },
-  { path: "/a", redirect: "/bar" },
-  { path: "*", component: RouterDemo, name: "404" }
+  }
 ];
 
 export default routes;
