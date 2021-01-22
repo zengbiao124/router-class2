@@ -23,7 +23,22 @@ const routes = [
         component: () => import("./view/blog/BlogDetail.vue"),
       }
     ]
-  }
+  },
+  {
+    path: "/shop",
+    name: "shop",
+    component: () => import("./view/shop/index")
+  },
+  {
+    path: "/baidu",
+    name: "baidu",
+    component: () => import("./view/baidu/index")
+  },
+  {
+    path: "/personal",
+    name: "personal",
+    component: () => import("./view/personal/index")
+  },
 ];
 
 export default routes;
